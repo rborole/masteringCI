@@ -54,11 +54,14 @@ public class AccountServiceImpl implements AccountService {
 
 	@Override
 	public Account deposit(int number, float amount)
-			throws InvalidAccountException {
+			throws InvalidAccountException,InsufficientBalanceException {
 		// TODO Auto-generated method stub
 		Account a = repo.findByNumber(number);
 		if(a==null){
 			throw new InvalidAccountException();
+		}
+		if(a.getBalance()<0){
+			throw new InsufficientBalanceException();
 		}
 		return a;
 	}

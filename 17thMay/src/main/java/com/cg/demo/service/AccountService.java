@@ -14,6 +14,6 @@ public interface AccountService {
 	
 	public Account withdraw(int number, float amount) throws InvalidAccountException, InsufficientBalanceException;
 
-	Account deposit(int number, float amount) throws InvalidAccountException;
+	Account deposit(int number, float amount) throws InvalidAccountException,InsufficientBalanceException;
 	
 }

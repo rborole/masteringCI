@@ -136,9 +136,13 @@ public class AccountServiceTest {
 
 		service.deposit(4,1000);
 	}
-	@Test(expected=com.cg.demo.exceptions.InvalidInitialAmountException.class)
+	@Test(expected=com.cg.demo.exceptions.InsufficientBalanceException.class)
 	public void ifAmountPassedToDepositIsNegativeThenItShouldThrowException() throws InvalidAccountException, InsufficientBalanceException{
 
+		Account a = new Account(5);
+		a.setBalance(-4000);
+		when(repo.findByNumber(5)).thenReturn(a);
+		service.deposit(5,1000);
 	}
 
 }
